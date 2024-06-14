@@ -1,0 +1,265 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 0;
+    outline: none;
+    font-family: 'Poppins';
+}
+html{
+    background-color: #222;
+    overflow: hidden;
+    scroll-behavior: smooth;
+}
+body{
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+.start-fade{
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    background-color: #000;
+    z-index: 10000;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.fadeOut{
+    animation: fadeOut .5s forwards;
+}
+@keyframes fadeOut {
+    to{
+        opacity: 0;
+    }
+}
+@keyframes fadeIn {
+    to{
+        opacity: 1;
+    }
+}
+section{
+    position: relative;
+    height: 100vh;
+    min-width: 50vw;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+section > img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(.3);
+    position: absolute;
+}
+section > h4, section > h4 > span{
+    position: relative;
+    color: #fff;
+    font-size: 48px;
+    font-weight: bold;
+}
+section > h2{
+    position: relative;
+    color: #fff98f;
+    font-size: 48px;
+    font-weight: bold;
+}
+section > h6{
+    position: relative;
+    color: #fff;
+    font-size: 36px;
+    font-weight: bold;
+}
+section > p{
+    position: relative;
+    color: #ccc;
+}
+section > p:nth-of-type(2){
+    margin-top: 16px;
+    transition: opacity .2s;
+}
+.higher-or-lower{
+    width: 200px;
+    height: 214px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 32px;
+}
+.higher-or-lower > div{
+    display: flex;
+    width: 100%;
+    height: 64px;
+    border: solid #fff 2px;
+    color: #fff98f;
+    border-radius: 100px;
+    justify-content: center;
+    gap: 16px;
+    align-items: center;
+    transition: background .2s, color .2s;
+    cursor: pointer;
+    font-weight: 700;
+}
+.higher-or-lower > div:hover{
+    background-color: #fff;
+    color: #000;
+}
+.higher-or-lower > div:hover > i{
+    color: #000;
+}
+.higher-or-lower > div:first-child > i{
+    top: 2px;
+}
+.higher-or-lower > div:nth-child(3) > i{
+    bottom: 2px;
+}
+.higher-or-lower > div:first-child:hover > i{
+    transform: translateY(-6px);
+}
+.higher-or-lower > div:nth-child(2) > i{
+    top: 2px;
+}
+.higher-or-lower > div:nth-child(3):hover > i{
+    transform: translateY(6px);
+}
+.higher-or-lower > div > i{
+    position: relative;
+    color: #fff;
+    transition: color .2s, transform .2s;
+    font-size: 26px;
+}
+
+.record{
+    position: fixed;
+    color: #fff;
+    bottom: 16px;
+    left: 16px;
+    font-size: 22px;
+    font-weight: 700;
+    z-index: 100;
+}
+.score{
+    position: fixed;
+    color: #fff;
+    bottom: 16px;
+    right: 16px;
+    font-size: 22px;
+    font-weight: 700;
+    z-index: 100;
+}
+.vs{
+    position: fixed;
+    height: 120px;
+    width: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 50%;
+    z-index: 100;
+    font-weight: bold;
+    font-size: 32px;
+    overflow: hidden;
+    transform-origin: center;
+}
+.vs__aux{
+    position: absolute;
+    width: 100%;
+    height: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    bottom: 0;
+}
+.vs__aux i{
+    color: #222;
+    font-size: 56px;
+    scale: 0;
+}
+.vsBad{
+    animation: vsBad .5s ease-in-out forwards;
+}
+.vsGood{
+    animation: vsGood .5s ease-in-out forwards;
+}
+.popUp{
+    animation: popUp .3s forwards;
+}
+@keyframes vsBad {
+    to{
+        height: 100%;
+        background-color: #f44;
+    }
+}
+@keyframes vsGood {
+    to{
+        height: 100%;
+        background-color: #4f4;
+    }
+}
+@keyframes popUp {
+    0%{
+        scale: 0;
+    }
+    60%{
+        scale: 130%;
+    }
+    100%{
+        scale: 100%;
+    }
+}
+@keyframes unPopUp {
+    to{
+        scale: 0;
+    }
+}
+.unPopUp{
+    animation: unPopUp .2s forwards
+}
+.result{
+    position: relative;
+    display: none;
+    opacity: 0;
+    justify-content: center;
+    font-weight: bold;
+    width: 200px;
+    color: #fff98f;
+    font-size: 48px;
+}
+.fadeIn {
+    animation: fadeIn .5s forwards;
+}
+
+.start-fade > *{
+    opacity: 0;
+}
+.return{
+    height: 80px;
+    width: 200px;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid #3a2 3px;
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 2px;
+    user-select: none;
+    transition: background .3s;
+    cursor: pointer;
+    text-decoration: none;
+    z-index: 1;
+}
+.return:hover{
+    background-color: #3a2;
+}
