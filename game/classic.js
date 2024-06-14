@@ -8,6 +8,21 @@ let i = 0;
 let score = 0;
 let highScore = localStorage.getItem('catHighScore') ?? 0;
 
+const loseMessages =
+[
+    'I would be embarrassed if my highest score were 0...',
+    'Well, I guess everyone have to start somewhere, one is at least not zero.',
+    'Two is pretty good but, can you do better?',
+    'Wow, I see that you are getting the hang of it, three is not too easy considering that there are 3 options to choose...',
+    "Four??, that's kind of how many legs a chair have, and you know what? A cat too!!",
+    'You are half way of making it to the two-digit numbers, I heard a cat over there saying that you would never reach that... Show him.',
+    'You are now more than half way of showing that cat who is the leader here.',
+    'Seven, do you know which animal has seven legs?? Me neither but keep going!!',
+    'Eight is kind of the number of legs that a spider has, but we are not here to talk about that, I hope you are not aracnophobic, cause I am.',
+    'You know you cannot leave knowing that you were just one point of reaching that stupid cat...',
+    'Wow, you made it, reaching this point is like 0,00001% if a cat were on a keyboard just pressing random buttons!! I guess that stupid cat is even further away...'
+]
+
 document.querySelector('.vs').style.left = `${window.innerWidth / 2 - document.querySelector('.vs').clientWidth / 2}px`;
 addEventListener('resize',()=>{
     document.querySelector('.vs').style.left = `${window.innerWidth / 2 - document.querySelector('.vs').clientWidth / 2}px`;
@@ -19,12 +34,16 @@ const vsBad = () => {
     setTimeout(() => {
         document.querySelector('.vs__aux > i').classList.add('popUp')
         setTimeout(() => {
-            document.querySelector('.start-fade > *').style.opacity = 1;
+            document.querySelector('.start-fade__h2').style.opacity = 1;
+            document.querySelector('.start-fade__p').style.opacity = 1;
+            document.querySelector('.start-fade__buttons').style.opacity = 1;
             document.querySelector('.start-fade').classList.remove('fadeOut');
             document.querySelector('.start-fade').style.opacity = 0;
             document.querySelector('.start-fade').style.backgroundColor = '#222';
             document.querySelector('.start-fade').classList.add('fadeIn');
             document.querySelector('.start-fade').style.pointerEvents = 'all'
+            document.querySelector('.start-fade__h2 > span').textContent = score;
+            document.querySelector('.start-fade__p').textContent = loseMessages[score];
         }, 1000);
     }, 1000);
 }
@@ -86,6 +105,9 @@ const getApiInfo = async () => {
         if(localStorage.getItem('record')) document.querySelector('.record').textContent = `High Score: ${localStorage.getItem('record')}`;
         else document.querySelector('.record').textContent = 'High Score: 0';
         document.querySelector('.start-fade').classList.add('fadeOut');
+        setTimeout(() => {
+            document.querySelector('.start-fade__loading').style.display = 'none';
+        }, 600);
 
 
         let keys = Object.keys(res[0].breeds[0]);
