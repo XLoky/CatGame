@@ -132,7 +132,7 @@ getApiInfo()
 const sectionLeftIdea = document.querySelector('section');
 const sectionRightIdea = document.querySelectorAll('section')[1];
 const generateLeftPost = (i, api, characteristics) =>{
-    let charWord = characteristics[Math.floor(Math.random() * 22)][0];
+    let charWord = characteristics[Math.floor(Math.random() * 21)][0];
     actualCharacteristic = charWord;
 
     let leftNumber;
