@@ -182,6 +182,16 @@ section > p:nth-of-type(2){
     z-index: 1000;
     bottom: 0;
 }
+.vs__timer{
+    height: 142px;
+    width: 142px;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .vs__aux i{
     color: #222;
     font-size: 56px;
