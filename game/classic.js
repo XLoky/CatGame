@@ -24,6 +24,22 @@ const loseMessages =
     'Wow, you made it, reaching this point is like 0,00001% if a cat were on a keyboard just pressing random buttons!! I guess that stupid cat is even further away...'
 ]
 
+function shuffle(array) {
+    let currentIndex = array.length;
+  
+    // While there remain elements to shuffle...
+    while (currentIndex != 0) {
+  
+      // Pick a remaining element...
+      let randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  }
+
 document.querySelector('.vs').style.left = `${window.innerWidth / 2 - document.querySelector('.vs').clientWidth / 2}px`;
 addEventListener('resize',()=>{
     document.querySelector('.vs').style.left = `${window.innerWidth / 2 - document.querySelector('.vs').clientWidth / 2}px`;
@@ -101,6 +117,7 @@ const getApiInfo = async () => {
         }
     ).then(res => res.json())
      .then(res => {
+        shuffle(res)
         console.log(res);
 
         if(localStorage.getItem('record')) document.querySelector('.record').textContent = `High Score: ${localStorage.getItem('record')}`;
