@@ -7,6 +7,7 @@ let apiInfo;
 let i = 0;
 let score = 0;
 let highScore = localStorage.getItem('catEasyHighScore') ?? 0;
+let date;
 
 const loseMessages =
 [
@@ -43,7 +44,8 @@ const vsBad = () => {
             document.querySelector('.start-fade').classList.add('fadeIn');
             document.querySelector('.start-fade').style.pointerEvents = 'all'
             document.querySelector('.start-fade__h2 > span').textContent = score;
-            document.querySelector('.start-fade__p').textContent = loseMessages[score];
+            if(score <= 10) document.querySelector('.start-fade__p').innerHTML = loseMessages[score] + '<br>' + 'Time: ' + (date - new Date()) / -1000 + 's';
+            else document.querySelector('.start-fade__p').innerHTML = 'You scored more than 10, I have to admit that it is already impressive, but how far can you go?' + '<br>' + 'Time: ' + (date - new Date()) / -1000 + 's';
         }, 1000);
     }, 1000);
 }
@@ -56,11 +58,11 @@ const vsGood = (i, api) => {
         document.querySelector('.record').innerHTML = `High Score: ${score}`;
     }
 
-    actualCharacteristic = characteristics[Math.floor(Math.random() * 22)][0];
+    actualCharacteristic = characteristics[Math.floor(Math.random() * 21)][0];
 
     console.log(api[i - 1].breeds[0][actualCharacteristic])
     while(!api[i - 1].breeds[0][actualCharacteristic] || !api[i].breeds[0][actualCharacteristic]){
-        actualCharacteristic = characteristics[Math.floor(Math.random() * 22)][0];
+        actualCharacteristic = characteristics[Math.floor(Math.random() * 21)][0];
     }
 
     i = generateRightPost(i, api);
@@ -94,7 +96,7 @@ const vsGood = (i, api) => {
 }
 
 const getApiInfo = async () => {
-    fetch('https://api.thecatapi.com/v1/images/search?limit=30&has_breeds=1',
+    fetch('https://api.thecatapi.com/v1/images/search?limit=100&has_breeds=1',
         {
             headers: {"x-api-key": "live_LpcOOa2VUTBXwXsRz3h1r3iyjibZtUVDGvyna8TkQy814hIixStPaRWwYvxf6r39"}
         }
@@ -123,6 +125,7 @@ const getApiInfo = async () => {
     console.log(characteristics)
     apiInfo = res;
     document.querySelector('.record').innerHTML = `High Score: ${highScore}`;
+    date = new Date();
     }).catch(e => console.log(e))
 }
 getApiInfo()
@@ -132,7 +135,7 @@ getApiInfo()
 const sectionLeftIdea = document.querySelector('section');
 const sectionRightIdea = document.querySelectorAll('section')[1];
 const generateLeftPost = (i, api, characteristics) =>{
-    let charWord = characteristics[Math.floor(Math.random() * 22)][0];
+    let charWord = characteristics[Math.floor(Math.random() * 21)][0];
     actualCharacteristic = charWord;
 
     let leftNumber;

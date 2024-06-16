@@ -121,7 +121,7 @@ const vsGood = (i, api) => {
 }
 
 const getApiInfo = async () => {
-    fetch('https://api.thecatapi.com/v1/images/search?limit=30&has_breeds=1',
+    fetch('https://api.thecatapi.com/v1/images/search?limit=100&has_breeds=1',
         {
             headers: {"x-api-key": "live_LpcOOa2VUTBXwXsRz3h1r3iyjibZtUVDGvyna8TkQy814hIixStPaRWwYvxf6r39"}
         }
