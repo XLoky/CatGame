@@ -6,7 +6,7 @@ const characteristics = [];
 let apiInfo;
 let i = 0;
 let score = 0;
-let highScore = localStorage.getItem('catHighScore') ?? 0;
+let highScore = localStorage.getItem('catEasyHighScore') ?? 0;
 
 const loseMessages =
 [
@@ -52,7 +52,7 @@ const vsGood = (i, api) => {
     document.querySelector('.score').innerHTML = `Score: ${score}`;
 
     if(score > highScore){
-        localStorage.setItem('catHighScore', score)
+        localStorage.setItem('catEasyHighScore', score)
         document.querySelector('.record').innerHTML = `High Score: ${score}`;
     }
 
@@ -208,48 +208,8 @@ const generateRightPost = (i, api, characteristics) =>{
         }, addIterationTime);
 
         setTimeout(() => {
-            if(resultNumber > leftNumber) {
+            if(resultNumber >= leftNumber) {
                 vsGood(i, api)
-            }
-            else{
-                vsBad(i, api);
-            }
-        }, 1000);
-    })
-
-    section.querySelector('.higher-or-lower__equal').addEventListener('click',()=>{
-        let aux;
-        if(i == 2) aux = 1;
-        else aux = 2;
-
-        let leftNumber;
-        let resultNumber;
-        for(let key of Object.keys(api[i - 2].breeds[0])){
-            if(key == actualCharacteristic) leftNumber = api[i - 2].breeds[0][key];
-        }
-        console.log(actualCharacteristic,api[i-1].breeds[0].name,api[i-1].breeds[0][actualCharacteristic])
-        for(let key of Object.keys(api[i - 1].breeds[0])){
-            if(key == actualCharacteristic) resultNumber = resultNumber = api[i - 1].breeds[0][key];
-        }
-        //generateRightPost(i, apiInfo, characteristics)
-        document.querySelectorAll('.higher-or-lower')[aux].style.display = 'none';
-        document.querySelectorAll('.result')[aux].style.display = 'flex';
-        document.querySelectorAll('.result')[aux].classList.add('fadeIn');
-        document.querySelectorAll('.result')[aux].textContent = 0;
-        
-        const addIterationTime = 1000 / resultNumber;
-
-        const intervalo = setInterval(() => {
-            if(document.querySelectorAll('.result')[aux].textContent == resultNumber){
-                clearInterval(intervalo);
-            }else{
-                document.querySelectorAll('.result')[aux].textContent = parseInt(document.querySelectorAll('.result')[aux].textContent) + 1;
-            }
-        }, addIterationTime);
-
-        setTimeout(() => {
-            if(resultNumber == leftNumber) {
-                vsGood(i, api);
             }
             else{
                 vsBad(i, api);
@@ -288,7 +248,7 @@ const generateRightPost = (i, api, characteristics) =>{
         }, addIterationTime);
 
         setTimeout(() => {
-            if(resultNumber < leftNumber) {
+            if(resultNumber <= leftNumber) {
                 vsGood(i, api);
             }
             else{

@@ -55,6 +55,9 @@ body{
 .mode:nth-child(2):hover{
     background-color: #3a2;
 }
+.mode:nth-child(3):hover{
+    background-color: #3a2;
+}
 .background{
     display: flex;
     position: absolute;
