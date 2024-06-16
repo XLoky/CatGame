@@ -70,7 +70,7 @@ const vsGood = (i, api) => {
 
     if(score > highScore){
         localStorage.setItem('catHighScore', score)
-        document.querySelector('.record').innerHTML = `High Score: ${score}`;
+        document.querySelector('.record').innerHTML = `Classic Mode - High Score: ${score}`;
     }
 
     actualCharacteristic = characteristics[Math.floor(Math.random() * 21)][0];
@@ -111,7 +111,7 @@ const vsGood = (i, api) => {
 }
 
 const getApiInfo = async () => {
-    fetch('https://api.thecatapi.com/v1/images/search?limit=100&has_breeds=1',
+    fetch('https://api.thecatapi.com/v1/images/search?limit=40&has_breeds=1',
         {
             headers: {"x-api-key": "live_LpcOOa2VUTBXwXsRz3h1r3iyjibZtUVDGvyna8TkQy814hIixStPaRWwYvxf6r39"}
         }
@@ -120,8 +120,8 @@ const getApiInfo = async () => {
         shuffle(res)
         console.log(res);
 
-        if(localStorage.getItem('record')) document.querySelector('.record').textContent = `High Score: ${localStorage.getItem('record')}`;
-        else document.querySelector('.record').textContent = 'High Score: 0';
+        if(localStorage.getItem('record')) document.querySelector('.record').textContent = `Classic Mode - High Score: ${localStorage.getItem('record')}`;
+        else document.querySelector('.record').textContent = 'Classic Mode - High Score: 0';
         document.querySelector('.start-fade').classList.add('fadeOut');
         setTimeout(() => {
             document.querySelector('.start-fade__loading').style.display = 'none';
@@ -140,7 +140,7 @@ const getApiInfo = async () => {
 
     console.log(characteristics)
     apiInfo = res;
-    document.querySelector('.record').innerHTML = `High Score: ${highScore}`;
+    document.querySelector('.record').innerHTML = `Classic Mode - High Score: ${highScore}`;
     date = new Date();
     }).catch(e => console.log(e))
 }

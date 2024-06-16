@@ -310,3 +310,15 @@ section > p:nth-of-type(2){
     display: flex;
     gap: 32px;
 }
+.logo{
+    position: absolute;
+    top: 16px;
+    width: 180px;
+    height: 100px;
+    z-index: 100;
+}
+.logo img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
